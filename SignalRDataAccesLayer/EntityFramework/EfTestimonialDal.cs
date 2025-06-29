@@ -1,4 +1,5 @@
-﻿using SignalRDataAccessLayer.Concrete;
+﻿using SignalRDataAccessLayer.Abstract;
+using SignalRDataAccessLayer.Concrete;
 using SignalRDataAccessLayer.Repositories;
 using SignalREntityLayer.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SignalRDataAccessLayer.EntityFramework
 {
-    public class EfTestimonialDal : GenericRepository<Testimonial>
+    public class EfTestimonialDal : GenericRepository<Testimonial>,ITestimonialDal
     {
         public EfTestimonialDal(SignalRContext context) : base(context)
         {

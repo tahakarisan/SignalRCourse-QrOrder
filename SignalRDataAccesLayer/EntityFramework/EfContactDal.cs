@@ -1,4 +1,5 @@
-﻿using SignalRDataAccessLayer.Concrete;
+﻿using SignalRDataAccessLayer.Abstract;
+using SignalRDataAccessLayer.Concrete;
 using SignalRDataAccessLayer.Repositories;
 using SignalREntityLayer.Entities;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SignalRDataAccessLayer.EntityFramework
 {
-    public class EfContactDal : GenericRepository<Contact>
+    public class EfContactDal : GenericRepository<Contact>,IContactDal
     {
         public EfContactDal(SignalRContext context) : base(context)
         {
