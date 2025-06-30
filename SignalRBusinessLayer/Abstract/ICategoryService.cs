@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalRDataAccessLayer.Abstract
+namespace SignalRBusinessLayer.Abstract
 {
-    public interface IProductDal:IGenericDal<Product>
+    public interface ICategoryService: IGenericService<Category>
     {
-        List<Product> GetProductWithCategories();
     }
 }
