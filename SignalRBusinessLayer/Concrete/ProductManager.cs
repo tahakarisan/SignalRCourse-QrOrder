@@ -1,6 +1,7 @@
 ﻿using SignalR.EntityLayer.Entities;
 using SignalRBusinessLayer.Abstract;
 using SignalRDataAccessLayer.Abstract;
+using SignalRDtoLayer.ProductDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace SignalRBusinessLayer.Concrete
             return _productDal.GetById(id);
         }
 
-        public List<Product> GetProductWithCategories()
+        public List<ResultProductWithCategoryDto> GetProductWithCategories()
         {
             return _productDal.GetProductWithCategories();
         }

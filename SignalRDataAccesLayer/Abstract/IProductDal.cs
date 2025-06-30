@@ -1,4 +1,5 @@
 ﻿using SignalR.EntityLayer.Entities;
+using SignalRDtoLayer.ProductDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace SignalRDataAccessLayer.Abstract
 {
     public interface IProductDal:IGenericDal<Product>
     {
-        List<Product> GetProductWithCategories();
+        List<ResultProductWithCategoryDto> GetProductWithCategories();
     }
 }

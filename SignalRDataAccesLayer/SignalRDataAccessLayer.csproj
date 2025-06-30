@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SignalRDtoLayer\SignalRDtoLayer.csproj" />
     <ProjectReference Include="..\SignalREntityLayer\SignalREntityLayer.csproj" />
   </ItemGroup>
 
