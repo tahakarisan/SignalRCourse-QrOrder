@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRAPI", "SignalRAPI\SignalRAPI.csproj", "{1F6E3E1B-B432-48BD-8D9A-C2FE3901A264}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{3420CFA2-B014-4E1E-A703-CCEE8A7CE9FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalREntityLayer", "SignalREntityLayer\SignalREntityLayer.csproj", "{07525D4F-4EAC-447D-B547-1943B54149BE}"
 EndProject
@@ -14,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRBusinessLayer", "SignalRBusinessLayer\SignalRBusinessLayer.csproj", "{60E3421C-0B82-4401-83D7-C3F8DA9D518C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRDataAccessLayer", "SignalRDataAccesLayer\SignalRDataAccessLayer.csproj", "{2FF32B11-C805-47AB-ABAB-CA79A3AA87BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUserInterface", "WebUserInterface\WebUserInterface.csproj", "{3DCDBF9C-AD14-4D45-82EC-EB329B7886A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		{1F6E3E1B-B432-48BD-8D9A-C2FE3901A264}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F6E3E1B-B432-48BD-8D9A-C2FE3901A264}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F6E3E1B-B432-48BD-8D9A-C2FE3901A264}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3420CFA2-B014-4E1E-A703-CCEE8A7CE9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3420CFA2-B014-4E1E-A703-CCEE8A7CE9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3420CFA2-B014-4E1E-A703-CCEE8A7CE9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3420CFA2-B014-4E1E-A703-CCEE8A7CE9FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07525D4F-4EAC-447D-B547-1943B54149BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07525D4F-4EAC-447D-B547-1943B54149BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07525D4F-4EAC-447D-B547-1943B54149BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,8 +41,15 @@ Global
 		{2FF32B11-C805-47AB-ABAB-CA79A3AA87BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF32B11-C805-47AB-ABAB-CA79A3AA87BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF32B11-C805-47AB-ABAB-CA79A3AA87BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DCDBF9C-AD14-4D45-82EC-EB329B7886A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DCDBF9C-AD14-4D45-82EC-EB329B7886A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DCDBF9C-AD14-4D45-82EC-EB329B7886A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DCDBF9C-AD14-4D45-82EC-EB329B7886A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1041DA05-AF94-4660-AE40-425F080DF746}
 	EndGlobalSection
 EndGlobal
