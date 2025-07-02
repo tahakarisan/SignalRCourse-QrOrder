@@ -40,14 +40,22 @@ namespace SignalRAPI.Controllers
             _categoryService.Add(value);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
+
+        [HttpPut]
         public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
         {
             var value = _mapper.Map<Category>(updateCategoryDto);
             _categoryService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
+        [HttpGet("{id}")]
+        public IActionResult GetCategory(int id)
+        {
+            var value = _categoryService.GetById(id);
+            return Ok(value);
+        }
+
+        [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             var result = _categoryService.GetById(id);

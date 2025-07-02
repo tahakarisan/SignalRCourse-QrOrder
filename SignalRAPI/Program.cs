@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SignalRContext>();
 
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 builder.Services.AddEndpointsApiExplorer(); // ✅ Swagger için doğru satır
 builder.Services.AddSwaggerGen();           // ✅ Swagger UI için doğru satır
 
@@ -39,6 +41,7 @@ builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
 
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
+
 
 
 
