@@ -4,6 +4,10 @@ using SignalRBusinessLayer.Concrete;
 using SignalRDataAccessLayer.Abstract;
 using SignalRDataAccessLayer.Concrete;
 using SignalRDataAccessLayer.EntityFramework;
+using System.Reflection;
+using AutoMapper;
+using SignalRAPI.Mapping;
+using SignalR.EntityLayer.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +40,8 @@ builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 
+
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -46,6 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();       // ✅ Swagger arayüzü  
 }
 
+app.MapControllers();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
