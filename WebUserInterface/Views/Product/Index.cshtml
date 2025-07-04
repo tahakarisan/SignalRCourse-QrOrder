@@ -1,26 +1,28 @@
-﻿@model List<WebUserInterface.Dtos.ResultCategoryDto>
+﻿@model List<WebUserInterface.Dtos.ResultProductDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 <div class="content">
 	<div class="container-fluid">
-		<h4 class="page-title">Kategori Tabloları</h4>
+		<h4 class="page-title">Ürün Tabloları</h4>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<div class="card-title">Kategori Tablosu</div>
+						<div class="card-title">Ürün Tablosu</div>
 					</div>
 					<div class="card-body">
 						<div class="card-sub">
-							Kategoriler ile ilgili veriler burada.
+							Ürünler ile ilgili veriler burada.
 						</div>
 						<table class="table mt-3">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Kategori Adı</th>
+									<th scope="col">Ürün Adı</th>
+									<th scope="col">Fiyat</th>
+									<th scope="col">Kategori</th>
 									<th scope="col">Durum</th>
 									<th scope="col">Sil</th>
 									<th scope="col">Güncelle</th>
@@ -31,25 +33,27 @@
 								{
 									<tr>
 										<td>@item.Id</td>
+										<td>@item.Name</td>
+										<td>@item.Price</td>
 										<td>@item.CategoryName</td>
 										<td>@(item.Status ? "Aktif" : "Pasif")</td>
 										<td>
-											<a asp-controller="Category"
-											   asp-action="DeleteCategory"
+											<a asp-controller="Product"
+											   asp-action="DeleteProduct"
 											   asp-route-id="@item.Id"
 											   class="btn btn-outline-danger">
 												Sil
 											</a>
 										</td>
 										<td>
-											<a href="/Category/UpdateCategory/@item.Id" class="btn btn-outline-success">Güncelle</a>
+											<a href="/Product/UpdateProduct/@item.Id" class="btn btn-outline-success">Güncelle</a>
 										</td>
 
 									</tr>
 								}
 							</tbody>
 						</table>
-						<a href="/Category/CreateCategory/" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+						<a href="/Product/CreateProduct/" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
 					</div>
 				</div>
 			</div>

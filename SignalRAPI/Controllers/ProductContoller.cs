@@ -34,6 +34,20 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("getProductWithCategory")]
+        public IActionResult GetProductWithCategory()
+        {
+            var result = _mapper.Map<List<ResultProductWithCategoryDto>>(_productService.GetProductWithCategories());
+            if (result.Count > 0)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
+        }
+
         [HttpPost]
         public IActionResult AddProduct(CreateProductDto createProductDto)
         {

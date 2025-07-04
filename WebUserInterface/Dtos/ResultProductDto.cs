@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalRDtoLayer.ProductDto
+﻿namespace WebUserInterface.Dtos
 {
-    public class ResultProductWithCategoryDto
+    public class ResultProductDto
     {
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,6 +10,5 @@ namespace SignalRDtoLayer.ProductDto
         public string ImageUrl { get; set; }
         public bool Status { get; set; }
         public string CategoryName { get; set; }
-        public int CategoryId { get; set; }
     }
 }
