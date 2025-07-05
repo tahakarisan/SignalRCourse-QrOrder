@@ -48,6 +48,18 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var result = _productService.GetById(id);
+            if (result == null)
+            {
+                return NotFound("Böyle Id yok");
+            }
+            var value = _mapper.Map<ResultProductDto>(result);
+            return Ok(value);
+        }
+
         [HttpPost]
         public IActionResult AddProduct(CreateProductDto createProductDto)
         {

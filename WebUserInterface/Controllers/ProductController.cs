@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 using WebUserInterface.Dtos;
@@ -25,7 +26,28 @@ namespace WebUserInterface.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> CreateProduct()
+        {
+            var categoryGetClient = _httpClientFactory.CreateClient();
+            var categoryResponseMessage = await categoryGetClient.GetAsync($"https://localhost:44356/api/Category/");
+            var categoryJsonData = await categoryResponseMessage.Content.ReadAsStringAsync();
+            var categoryValues = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(categoryJsonData);
+            List<SelectListItem> values2 = (from c in categoryValues
+                                            select new SelectListItem
+                                            {
+                                                Text = c.CategoryName,
+                                                Value = c.Id.ToString(),
+                                            }).ToList();
+            ViewBag.v = values2;
 
+            return View();
+
+
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -63,6 +85,22 @@ namespace WebUserInterface.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int id)
         {
+            //önce kategorileri çekelim
+            var categoryGetClient = _httpClientFactory.CreateClient();
+            var categoryResponseMessage = await categoryGetClient.GetAsync($"https://localhost:44356/api/Category/");
+            var categoryJsonData = await categoryResponseMessage.Content.ReadAsStringAsync();
+            var categoryValues = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(categoryJsonData);
+            List<SelectListItem> values2 = (from c in categoryValues
+                                            select new SelectListItem
+                                            {
+                                                Text = c.CategoryName,
+                                                Value = c.Id.ToString(),
+                                            }).ToList();
+            ViewBag.v = values2;
+
+
+
+
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:44356/api/ProductContoller/{id}");
             if (responseMessage.IsSuccessStatusCode)
