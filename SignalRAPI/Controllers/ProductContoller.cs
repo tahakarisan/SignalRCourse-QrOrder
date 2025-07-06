@@ -67,15 +67,16 @@ namespace SignalRAPI.Controllers
             _productService.Add(value);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
-        public IActionResult UpdateAbout(UpdateProductDto updateProductDto)
+        [HttpPut]
+        public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
         {
             var value = _mapper.Map<Product>(updateProductDto);
             _productService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
-        public IActionResult DeleteAbout(int id)
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
         {
             var result = _productService.GetById(id);
             if (result == null)
