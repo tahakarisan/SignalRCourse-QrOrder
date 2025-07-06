@@ -40,14 +40,14 @@ namespace SignalRAPI.Controllers
             _bookingService.Add(result);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
+        [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
         {
             var result = _mapper.Map<Booking>(updateBookingDto);
             _bookingService.Update(result);
             return Ok("About added successfully.");
         }
-        [HttpPut]
+        [HttpDelete("{id}")]
         public IActionResult DeleteAbout(int id)
         {
             var result = _bookingService.GetById(id);
