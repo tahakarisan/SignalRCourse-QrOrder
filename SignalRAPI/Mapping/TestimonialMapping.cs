@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SignalRDtoLayer.TestimonialDto;
+using SignalREntityLayer.Entities;
 
 namespace SignalRAPI.Mapping
 {
@@ -7,10 +8,10 @@ namespace SignalRAPI.Mapping
     {
         public TestimonialMapping()
         {
-            CreateMap<TestimonialMapping, ResultTestimonialDto>().ReverseMap();
-            CreateMap<TestimonialMapping, CreateTestimonialDto>().ReverseMap();
-            CreateMap<TestimonialMapping, GetTestimonialDto>().ReverseMap();
-            CreateMap<TestimonialMapping, ResultTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, ResultTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, CreateTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, GetTestimonialDto>().ReverseMap();
+            CreateMap<Testimonial, UpdateTestimonialDto>().ReverseMap();
         }
     }
 }

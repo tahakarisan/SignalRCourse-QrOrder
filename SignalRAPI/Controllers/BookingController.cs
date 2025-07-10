@@ -48,7 +48,7 @@ namespace SignalRAPI.Controllers
             return Ok("About added successfully.");
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteAbout(int id)
+        public IActionResult DeleteBooking(int id)
         {
             var result = _bookingService.GetById(id);
             if (result == null)

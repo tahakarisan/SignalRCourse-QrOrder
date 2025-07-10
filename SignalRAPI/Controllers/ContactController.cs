@@ -34,6 +34,22 @@ namespace SignalRAPI.Controllers
             }
         }
 
+
+        [HttpGet("{id}")]
+        public IActionResult GetListById(int id)
+        {
+            var result = _contactService.GetById(id);
+            if (result != null)
+            {
+                var value = _mapper.Map<ResultContactDto>(result);
+                return Ok(value);
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
+        }
+
         [HttpPost]
         public IActionResult AddContact(CreateContactDto createContactDto)
         {
@@ -41,16 +57,16 @@ namespace SignalRAPI.Controllers
             _contactService.Add(value);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
-        public IActionResult UpdateAbout(UpdateContactDto updateContactDto)
+        [HttpPut]
+        public IActionResult UpdateContact(UpdateContactDto updateContactDto)
         {
 
             var value = _mapper.Map<Contact>(updateContactDto);
             _contactService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
-        public IActionResult DeleteAbout(int id)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteContact(int id)
         {
             var result = _contactService.GetById(id);
             if (result == null)

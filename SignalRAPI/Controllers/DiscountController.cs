@@ -41,15 +41,15 @@ namespace SignalRAPI.Controllers
             _discountService.Add(value);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
+        [HttpPut]
         public IActionResult UpdateDiscount(UpdateDiscountDto updateDiscountDto)
         {
             var value = _mapper.Map<Discount>(updateDiscountDto);   
             _discountService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
-        public IActionResult DeleteAbout(int id)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteDiscount(int id)
         {
             var result = _discountService.GetById(id);
             if (result == null)

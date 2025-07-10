@@ -22,7 +22,7 @@ namespace WebUserInterface.Controllers
                 var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
                 return View(values);
             }
-            return View();
+            return View(new List<ResultCategoryDto>());
         }
 
 

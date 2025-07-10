@@ -23,7 +23,7 @@ namespace WebUserInterface.Controllers
                 var values = JsonConvert.DeserializeObject<List<ResultBookingDto>>(jsonData);
                 return View(values);
             }
-            return View();
+            return View(new List<ResultBookingDto>());
         }
         [HttpGet]
         public IActionResult CreateBooking()

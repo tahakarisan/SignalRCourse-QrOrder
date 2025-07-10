@@ -22,7 +22,7 @@ namespace WebUserInterface.Controllers
                 var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
                 return View(values);
             }
-            return View();
+            return View(new List<ResultAboutDto>());
         }
         [HttpGet]
         public IActionResult CreateAbout()

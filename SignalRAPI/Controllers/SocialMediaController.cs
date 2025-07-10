@@ -40,14 +40,14 @@ namespace SignalRAPI.Controllers
             _socialMediaService.Add(result);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
+        [HttpPut]
         public IActionResult UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
         {
             var value = _mapper.Map<SocialMedia>(updateSocialMediaDto); 
             _socialMediaService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
+        [HttpDelete("{id}")]
         public IActionResult DeleteSocialMedia(int id)
         {
             var result = _socialMediaService.GetById(id);

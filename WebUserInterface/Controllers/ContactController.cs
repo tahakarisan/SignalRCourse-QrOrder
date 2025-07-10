@@ -22,8 +22,9 @@ namespace WebUserInterface.Controllers
                 var values = JsonConvert.DeserializeObject<List<ResultContactDto>>(jsonData);
                 return View(values);
             }
-            return View();
+            return View(new List<ResultContactDto>());
         }
+
         [HttpGet]
         public IActionResult CreateContact()
         {

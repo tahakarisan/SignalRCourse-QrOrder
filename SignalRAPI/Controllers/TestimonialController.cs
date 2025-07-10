@@ -34,6 +34,22 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetListById(int id)
+        {
+            var result = _testimonialService.GetById(id);
+            if (result != null)
+            {
+
+                var value = _mapper.Map<ResultTestimonialDto>(result);
+                return Ok(value);
+                
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
+        }
         [HttpPost]
         public IActionResult AddTestimonial(CreateTestimonialDto createTestimonialDto)
         {
@@ -41,14 +57,18 @@ namespace SignalRAPI.Controllers
             _testimonialService.Add(value);
             return Ok("About added successfully.");
         }
-        [HttpDelete]
-        public IActionResult UpdateTestimonial(UpdateAboutDto updateAboutDto)
+
+
+        [HttpPut]
+        public IActionResult UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
         {
-            var value = _mapper.Map<Testimonial>(updateAboutDto);   
+            var value = _mapper.Map<Testimonial>(updateTestimonialDto);   
             _testimonialService.Update(value);
             return Ok("About added successfully.");
         }
-        [HttpPut]
+        
+
+        [HttpDelete("{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             var result = _testimonialService.GetById(id);

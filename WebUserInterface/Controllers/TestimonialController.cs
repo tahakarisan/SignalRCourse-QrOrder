@@ -16,44 +16,31 @@ namespace WebUserInterface.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44356/api/ProductContoller/getProductWithCategory");
+            var responseMessage = await client.GetAsync("https://localhost:44356/api/Testimonial");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultTestimonialDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateProduct()
+        public IActionResult CreateTestimonial()
         {
-            var categoryGetClient = _httpClientFactory.CreateClient();
-            var categoryResponseMessage = await categoryGetClient.GetAsync($"https://localhost:44356/api/Category/");
-            var categoryJsonData = await categoryResponseMessage.Content.ReadAsStringAsync();
-            var categoryValues = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(categoryJsonData);
-            List<SelectListItem> values2 = (from c in categoryValues
-                                            select new SelectListItem
-                                            {
-                                                Text = c.CategoryName,
-                                                Value = c.Id.ToString(),
-                                            }).ToList();
-            ViewBag.v = values2;
-
             return View();
-
 
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
+        public async Task<IActionResult> CreateTestimonial(CreateTestimonialDto createTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createProductDto);
+            var jsonData = JsonConvert.SerializeObject(createTestimonialDto);
             StringContent content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44356/api/ProductContoller", content);
+            var responseMessage = await client.PostAsync("https://localhost:44356/api/Testimonial", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -66,11 +53,11 @@ namespace WebUserInterface.Controllers
 
         }
 
-
-        public async Task<IActionResult> DeleteProduct(int id)
+        
+        public async Task<IActionResult> DeleteTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44356/api/ProductContoller/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44356/api/Testimonial/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -83,41 +70,26 @@ namespace WebUserInterface.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateProduct(int id)
+        public async Task<IActionResult> UpdateTestimonial(int id)
         {
-            //önce kategorileri çekelim
-            var categoryGetClient = _httpClientFactory.CreateClient();
-            var categoryResponseMessage = await categoryGetClient.GetAsync($"https://localhost:44356/api/Category/");
-            var categoryJsonData = await categoryResponseMessage.Content.ReadAsStringAsync();
-            var categoryValues = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(categoryJsonData);
-            List<SelectListItem> values2 = (from c in categoryValues
-                                            select new SelectListItem
-                                            {
-                                                Text = c.CategoryName,
-                                                Value = c.Id.ToString(),
-                                            }).ToList();
-            ViewBag.v = values2;
-
-
-
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44356/api/ProductContoller/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44356/api/Testimonial/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateTestimonialDto>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
+        public async Task<IActionResult> UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateProductDto);
+            var jsonData = JsonConvert.SerializeObject(updateTestimonialDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44356/api/ProductContoller/", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:44356/api/Testimonial/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
