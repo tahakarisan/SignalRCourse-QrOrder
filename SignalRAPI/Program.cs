@@ -8,8 +8,23 @@ using System.Reflection;
 using AutoMapper;
 using SignalRAPI.Mapping;
 using SignalR.EntityLayer.Entities;
+using SignalRAPI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<SignalRContext>();
 
@@ -54,6 +69,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();         // ✅ Swagger middleware  
     app.UseSwaggerUI();       // ✅ Swagger arayüzü  
 }
+
+app.UseCors("CorsPolicy");
+
+app.MapHub<SignalRHub>("/signalRHub");
 
 app.MapControllers();
 app.UseHttpsRedirection();
