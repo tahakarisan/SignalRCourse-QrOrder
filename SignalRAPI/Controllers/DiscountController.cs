@@ -34,6 +34,21 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetListById(int id)
+        {
+            var result = _discountService.GetById(id);
+            if (result != null)
+            {
+                var value = _mapper.Map<ResultDiscountDto>(result);
+                return Ok(value);
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
+        }
+
         [HttpPost]
         public IActionResult AddDiscount(CreateDiscountDto createDiscountDto)
         {

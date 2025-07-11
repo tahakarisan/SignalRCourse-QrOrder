@@ -15,8 +15,8 @@ builder.Services.AddDbContext<SignalRContext>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-builder.Services.AddEndpointsApiExplorer(); // ✅ Swagger için doğru satır
-builder.Services.AddSwaggerGen();           // ✅ Swagger UI için doğru satır
+builder.Services.AddEndpointsApiExplorer(); 
+builder.Services.AddSwaggerGen();      
 
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
