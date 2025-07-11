@@ -80,6 +80,7 @@ namespace WebUserInterface.Controllers
             }
             return View();
         }
+
         public async Task<IActionResult> BookingStatusApproved(int id)
         {
             var client = _httpClientFactory.CreateClient();
