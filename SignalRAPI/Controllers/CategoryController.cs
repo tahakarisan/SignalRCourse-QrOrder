@@ -32,7 +32,11 @@ namespace SignalRAPI.Controllers
                 return NotFound("No records found.");
             }
         }
-
+        [HttpGet("CategoryCount")]
+        public IActionResult CategoryCount()
+        {
+            return Ok(_categoryService.GetAll().Count());
+        }
         [HttpPost]
         public IActionResult AddCategory(CreateCategoryDto createCategoryDto)
         {
