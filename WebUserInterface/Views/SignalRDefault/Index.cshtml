@@ -1,6 +1,8 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Index";
 }
+
 
 <h1>Index</h1>
 
@@ -8,6 +10,9 @@
     <div class="col-md-8 offset-2">
         <div class="alert alert-success">
             Bağlantının Durumu: <strong id="connstatus"></strong>
+        </div>
+        <div class="alert alert-success">
+            Kategori Sayısı: <strong id="categoryCount"></strong>
         </div>
     </div>
 </div>
@@ -25,6 +30,10 @@
 
             connection.start().then(() => {
                 $("#connstatus").text(connection.state);
+                connection.invoke("SendCategoryCount")
+                connection.on("ReceiveCategoryCount",(value)=>{
+                    $("#categoryCount").text(value);
+                })
                 console.log(connection.state);
             }).catch((err) => {
                 console.error(err);
