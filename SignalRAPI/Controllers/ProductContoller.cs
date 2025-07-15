@@ -48,6 +48,14 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("categoryCount")]
+        public IActionResult CategoryCount()
+        {
+            var result = _productService.ProductCount();
+
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

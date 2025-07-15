@@ -32,11 +32,31 @@ namespace SignalRAPI.Controllers
                 return NotFound("No records found.");
             }
         }
+
         [HttpGet("CategoryCount")]
         public IActionResult CategoryCount()
         {
-            return Ok(_categoryService.GetAll().Count());
+            return Ok(_categoryService.CategoryCount());
         }
+
+        [HttpGet("activeCategoryCount")]
+        public IActionResult ActiveCategoryCount()
+        {
+            return Ok(_categoryService.ActiveCategoryCount());
+        }
+
+        [HttpGet("passiveCategoryCount")]
+        public IActionResult PassiveCategoryCount()
+        {
+            return Ok(_categoryService.PassiveCategoryCount());
+        }
+
+        [HttpGet("getCategoryCountByName")]
+        public IActionResult CategoryCountByName(string name)
+        {
+            return Ok(_categoryService.GetCategoryByName(name));
+        }
+
         [HttpPost]
         public IActionResult AddCategory(CreateCategoryDto createCategoryDto)
         {
