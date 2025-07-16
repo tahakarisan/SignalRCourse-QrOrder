@@ -18,6 +18,7 @@ namespace SignalRDataAccessLayer.Migrations
                     OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TableNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "Date", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)

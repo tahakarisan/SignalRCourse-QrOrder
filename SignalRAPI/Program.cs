@@ -24,14 +24,12 @@ builder.Services.AddCors(opt =>
     });
 });
 
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<SignalRContext>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-builder.Services.AddEndpointsApiExplorer(); 
-builder.Services.AddSwaggerGen();      
 
 builder.Services.AddScoped<IAboutService, AboutManager>();
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
@@ -57,7 +55,12 @@ builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 
+builder.Services.AddScoped<IOrderService, OrderManager>();
+builder.Services.AddScoped<IOrderDal, EfOrderDal>();
 
+
+
+builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddControllers();
@@ -66,8 +69,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();         // ✅ Swagger middleware  
-    app.UseSwaggerUI();       // ✅ Swagger arayüzü  
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseCors("CorsPolicy");
