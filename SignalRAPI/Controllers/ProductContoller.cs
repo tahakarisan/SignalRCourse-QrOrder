@@ -48,6 +48,20 @@ namespace SignalRAPI.Controllers
             }
         }
 
+        [HttpGet("getMaxPriceProduct")]
+        public IActionResult GetMaxPrice()
+        {
+            var result = _productService.GetMaxPriceProduct();
+            if (result!=null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
+        }
+
         [HttpGet("categoryCount")]
         public IActionResult CategoryCount()
         {

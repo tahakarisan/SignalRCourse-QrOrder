@@ -49,5 +49,14 @@ namespace SignalRDataAccessLayer.EntityFramework
                 return context.Products.Count();
             }
         }
+
+        public Product GetMaxPriceProduct()
+        {
+            using (var context = new SignalRContext())
+            {
+                var result = context.Products.OrderByDescending(c => c.Price).ToArray();
+                return result[0];
+            }
+        }
     }
 }

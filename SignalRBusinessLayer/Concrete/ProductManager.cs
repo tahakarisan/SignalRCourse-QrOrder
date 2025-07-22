@@ -39,6 +39,11 @@ namespace SignalRBusinessLayer.Concrete
             return _productDal.GetById(id);
         }
 
+        public Product GetMaxPriceProduct()
+        {
+            return _productDal.GetMaxPriceProduct();
+        }
+
         public List<ResultProductWithCategoryDto> GetProductWithCategories()
         {
             return _productDal.GetProductWithCategories();

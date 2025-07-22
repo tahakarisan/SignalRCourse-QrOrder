@@ -12,5 +12,6 @@ namespace SignalRBusinessLayer.Abstract
     {
         List<ResultProductWithCategoryDto> GetProductWithCategories();
         int ProductCount();
+        Product GetMaxPriceProduct();
     }
 }

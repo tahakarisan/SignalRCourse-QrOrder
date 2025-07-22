@@ -11,7 +11,7 @@ namespace SignalRDataAccessLayer.Abstract
     public interface IProductDal:IGenericDal<Product>
     {
         List<ResultProductWithCategoryDto> GetProductWithCategories();
-
+        Product GetMaxPriceProduct();
         int ProductCount(); 
     }
 }

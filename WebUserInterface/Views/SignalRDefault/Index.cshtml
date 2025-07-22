@@ -30,7 +30,9 @@
 
             connection.start().then(() => {
                 $("#connstatus").text(connection.state);
-                connection.invoke("SendCategoryCount")
+                setInterval(() => {
+                 connection.invoke("SendCategoryCount");
+                }, 1000);
                 connection.on("ReceiveCategoryCount",(value)=>{
                     $("#categoryCount").text(value);
                 })
