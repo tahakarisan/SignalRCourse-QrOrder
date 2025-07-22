@@ -9,10 +9,12 @@ namespace SignalRAPI.Hubs
         SignalRContext context = new SignalRContext();
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
-        public SignalRHub(ICategoryService categoryService,IProductService productService)
+        private readonly IOrderService _orderService;
+        public SignalRHub(ICategoryService categoryService,IProductService productService,IOrderService orderService)
         {
             _categoryService = categoryService;
             _productService = productService;
+            _orderService = orderService;   
         }
         public async Task SendStatistics()
         {
@@ -51,6 +53,32 @@ namespace SignalRAPI.Hubs
 
             var value8 = context.Products.Average(c=>c.Price);
             await Clients.All.SendAsync("ReceiveAveragePrice",value8);
+
+            var value9 = _orderService.ActiveOrderCount();
+            await Clients.All.SendAsync("ReceiveActiveOrderCount",value9);
+
+            var value10 = context.Orders.Count();
+            await Clients.All.SendAsync("ReceiveOrderCount", value10);
+
+            var value11 = _orderService.LastOrderPrice()+" TL";
+            await Clients.All.SendAsync("ReceiveLastOrderPrice", value11);
+
+            var value12 = context.MoneyCases.Sum(c=>c.TotalAmount);
+            await Clients.All.SendAsync("ReceiveTotalPrice",value12);
+
+            var value13 = _orderService.TodayTotalPrice();
+            await Clients.All.SendAsync("ReceiveTodayTotalPrice",value13);
+
+            var value14 = context.MenuTables.Count();
+            await Clients.All.SendAsync("ReceiveTableCount",value14);
+
+            var valuearray = context.Products.OrderBy(c=>c.Price).ToArray();
+            var value15 = valuearray[0].Name;
+            await Clients.All.SendAsync("ReceiveMinPriceProduct", value15);
+            
+            var value16 = context.Products.Where(p => p.CategoryId == categoryHamburger.Id).Average(c=>c.Price);
+            await Clients.All.SendAsync("ReceiveAvgHamburgerPrice", value16);
+
         }
     }
 }
