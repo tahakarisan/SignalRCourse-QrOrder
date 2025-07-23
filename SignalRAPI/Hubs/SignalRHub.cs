@@ -67,7 +67,7 @@ namespace SignalRAPI.Hubs
             await Clients.All.SendAsync("ReceiveTotalPrice",value12);
 
             var value13 = _orderService.TodayTotalPrice();
-            await Clients.All.SendAsync("ReceiveTodayTotalPrice",value13);
+            await Clients.All.SendAsync("ReceiveTodayTotalPrice",value13.ToString("0.00")+ "₺");
 
             var value14 = context.MenuTables.Count();
             await Clients.All.SendAsync("ReceiveTableCount",value14);
@@ -77,8 +77,13 @@ namespace SignalRAPI.Hubs
             await Clients.All.SendAsync("ReceiveMinPriceProduct", value15);
             
             var value16 = context.Products.Where(p => p.CategoryId == categoryHamburger.Id).Average(c=>c.Price);
-            await Clients.All.SendAsync("ReceiveAvgHamburgerPrice", value16);
+            await Clients.All.SendAsync("ReceiveAvgHamburgerPrice",value16);
 
+        }
+        public async Task SendProgress()
+        {
+            var value12 = context.MoneyCases.Sum(c => c.TotalAmount);
+            await Clients.All.SendAsync("ReceiveTotalPrice", value12.ToString("0.00") + "₺");
         }
     }
 }

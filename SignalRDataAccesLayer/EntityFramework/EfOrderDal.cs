@@ -20,7 +20,7 @@ namespace SignalRDataAccessLayer.EntityFramework
         public int ActiveOrderCount()
         {
             using var context = new SignalRContext();
-            return context.Orders.Count(o => o.Status == 1);
+            return context.Orders.Count(o => o.Status == 1|| o.Status==2);
         }
 
         public decimal LastOrderPrice()
