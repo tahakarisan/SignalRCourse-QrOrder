@@ -4,5 +4,18 @@
     Layout = "~/Views/UILayout/Index.cshtml";
 }
 
-<h1>Index</h1>
 
+@await Component.InvokeAsync("_DefaultSliderPartialComponent")
+<!-- end slider section -->
+</div>
+
+
+<!-- offer section -->
+@await Component.InvokeAsync("_DefaultOfferPartialComponent")
+
+
+@await Component.InvokeAsync("_DefaultOurMenuPartialComponent")
+
+@await Component.InvokeAsync("_DefaultAboutPartialComponent")
+
+@await Component.InvokeAsync("_DefaultTestimonialPartialComponent")
