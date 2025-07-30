@@ -12,6 +12,7 @@ namespace SignalRDataAccessLayer.Abstract
     {
         List<ResultProductWithCategoryDto> GetProductWithCategories();
         Product GetMaxPriceProduct();
+        List<ResultProductWithCategoryDto> GetProductCategoryId(int categoryId);
         int ProductCount(); 
     }
 }

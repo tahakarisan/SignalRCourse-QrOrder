@@ -58,5 +58,27 @@ namespace SignalRDataAccessLayer.EntityFramework
                 return result[0];
             }
         }
+
+        public List<ResultProductWithCategoryDto> GetProductCategoryId(int categoryId)
+        {
+            using (var context = new SignalRContext())
+            {
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.Id
+                             where p.CategoryId == categoryId
+                             select new ResultProductWithCategoryDto
+                             {
+                                 Id = p.Id,
+                                 Description = p.Description,
+                                 CategoryName = c.CategoryName,
+                                 Status = p.Status,
+                                 ImageUrl = p.ImageUrl,
+                                 Name = p.Name,
+                                 Price = p.Price,
+                             };
+                return result.ToList();
+            }
+        }
     }
 }

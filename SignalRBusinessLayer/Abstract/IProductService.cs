@@ -11,6 +11,7 @@ namespace SignalRBusinessLayer.Abstract
     public interface IProductService:IGenericService<Product>
     {
         List<ResultProductWithCategoryDto> GetProductWithCategories();
+        List<ResultProductWithCategoryDto> GetProductCategoryId(int categoryId);
         int ProductCount();
         Product GetMaxPriceProduct();
     }

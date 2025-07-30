@@ -70,8 +70,8 @@ namespace SignalRAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        //[HttpGet("{id}")]
+        /*public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
             if (result == null)
@@ -80,6 +80,17 @@ namespace SignalRAPI.Controllers
             }
             var value = _mapper.Map<ResultProductDto>(result);
             return Ok(value);
+        }*/
+
+        [HttpGet("{categoryId}")]
+        public IActionResult GetByCategoryId(int categoryId)
+        {
+            var result = _mapper.Map<List<ResultProductWithCategoryDto>>(_productService.GetProductCategoryId(categoryId));
+            if (result == null)
+            {
+                return NotFound("Böyle Id yok");
+            }
+            return Ok(result);
         }
 
         [HttpPost]
