@@ -1,71 +1,11 @@
 ﻿@model List<WebUserInterface.Dtos.ResultCategoryDto>
 
 <ul class="filters_menu">
-    <li class="active" data-id="0" onclick="getSelectedProduct(this)">Tüm Ürünler</li>
+    <li class="active" data-filter="*">Tüm Ürünler</li>
 
     @foreach (var item in Model)
+
     {
-        <li data-id="@item.Id" onclick="getSelectedProduct(this)">
-            @item.CategoryName
-        </li>
+        <li data-filter=".@item.CategoryName">@item.CategoryName</li>
     }
 </ul>
-
-<div id="productList">
-    <!-- Ürünler buraya basılacak -->
-</div>
-
-<script>
-    function getSelectedProduct(element) {
-        const categoryId = $(element).data('id');
-        console.log("Seçilen kategori ID:", categoryId);
-
-        // URL'yi kategoriye göre ayarla (0 ise tüm ürünler)
-        const url = categoryId === 0
-            ? "https://localhost:44356/api/ProductContoller"
-            : `https://localhost:44356/api/ProductContoller/${categoryId}`;
-
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    console.log(`https://localhost:44356/api/ProductContoller/${categoryId}`)
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(products => {
-                console.log(products);
-                renderProducts(products);
-            })
-            .catch(error => {
-                console.error("API Hatası:", error);
-                $('#productList').html('<p>Ürünler yüklenirken bir hata oluştu.</p>');
-            });
-    }
-
-    function renderProducts(products) {
-        const container = $('#productList');
-        container.empty();
-
-        if (!products || products.length === 0) {
-            container.append('<p>Bu kategoriye ait ürün bulunamadı.</p>');
-            return;
-        }
-
-        products.forEach(product => {
-            const card = `
-                <div class="product_card">
-                    <h4>${product.name}</h4>
-                    <p>${product.description}</p>
-                    <p><strong>${product.price} TL</strong></p>
-                </div>
-            `;
-            container.append(card);
-        });
-    }
-
-    // Sayfa açıldığında otomatik olarak "Tüm Ürünler" seçilsin ve yüklsin:
-    $(document).ready(function () {
-        getSelectedProduct($('.filters_menu li.active')[0]);
-    });
-</script>
