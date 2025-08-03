@@ -59,5 +59,13 @@ namespace SignalRAPI.Controllers
             _basketService.Delete(result);
             return Ok("About deleted successfully.");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetBasketByMenuTableId(int id)
+        {
+            var values = _basketService.GetBasketByMenuTableNumber(id);
+            return Ok(values);
+        }
+
     }
 }

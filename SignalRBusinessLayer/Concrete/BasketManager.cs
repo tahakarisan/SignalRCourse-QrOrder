@@ -31,6 +31,11 @@ namespace SignalRBusinessLayer.Concrete
             return _basketDal.GetAll();
         }
 
+        public List<Basket> GetBasketByMenuTableNumber(int id)
+        {
+            return _basketDal.GetBasketByMenuTableNumber(id);
+        }
+
         public Basket GetById(int id)
         {
             return _basketDal.GetById(id);

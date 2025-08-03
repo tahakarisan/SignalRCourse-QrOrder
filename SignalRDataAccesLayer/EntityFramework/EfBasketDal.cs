@@ -1,4 +1,5 @@
-﻿using SignalRDataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using SignalRDataAccessLayer.Abstract;
 using SignalRDataAccessLayer.Concrete;
 using SignalRDataAccessLayer.Repositories;
 using SignalREntityLayer.Entities;
@@ -14,6 +15,12 @@ namespace SignalRDataAccessLayer.EntityFramework
     {
         public EfBasketDal(SignalRContext context) : base(context)
         {
+        }
+        public List<Basket> GetBasketByMenuTableNumber(int id)
+        {
+            using var context = new SignalRContext();
+            var values = context.Baskets.Where(x => x.MenuTableId == id).Include(x => x.Product).ToList();
+            return values;
         }
     }
 }
