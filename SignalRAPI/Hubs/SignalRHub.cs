@@ -10,10 +10,13 @@ namespace SignalRAPI.Hubs
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        public SignalRHub(ICategoryService categoryService,IProductService productService,IOrderService orderService)
+        private readonly IBookingService _bookingService;
+
+        public SignalRHub(ICategoryService categoryService,IProductService productService,IOrderService orderService,IBookingService bookingService)
         {
             _categoryService = categoryService;
             _productService = productService;
+            _bookingService = bookingService;
             _orderService = orderService;   
         }
         public async Task SendStatistics()
@@ -84,6 +87,11 @@ namespace SignalRAPI.Hubs
         {
             var value12 = context.MoneyCases.Sum(c => c.TotalAmount);
             await Clients.All.SendAsync("ReceiveTotalPrice", value12.ToString("0.00") + "₺");
+        }
+        public async Task SendBooking()
+        {
+            var value = _bookingService.GetAll();
+            await Clients.All.SendAsync("ReceiveBookingList", value);
         }
     }
 }
