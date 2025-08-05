@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SignalR.EntityLayer.Entities;
+using SignalRAPI.Models;
 using SignalRBusinessLayer.Abstract;
+using SignalRDataAccessLayer.Concrete;
 using SignalRDtoLayer.BasketDto;
 using SignalREntityLayer.Entities;
 using System.Runtime.ConstrainedExecution;
@@ -48,7 +51,7 @@ namespace SignalRAPI.Controllers
             _basketService.Update(result);
             return Ok("About added successfully.");
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteBasket/{id}")]
         public IActionResult DeleteBasket(int id)
         {
             var result = _basketService.GetById(id);
@@ -58,6 +61,31 @@ namespace SignalRAPI.Controllers
             }
             _basketService.Delete(result);
             return Ok("About deleted successfully.");
+        }
+
+        [HttpGet("basketListByMenuTableWithProductName")]
+        public IActionResult BasketListByMenuTableWithProductName(int id)
+        {
+            SignalRContext signalRContext = new SignalRContext();
+            var values = signalRContext.Baskets.Include(c=>c.Product).Where(m=>m.MenuTableId==id).Select(z=>new ResultBasketListWithProducts
+            {
+                BasketId =z.BasketId,
+                Price = z.Price,
+                Count = z.Count,
+                TotalPrice = z.Price*z.Count,
+                ProductId = z.ProductId,
+                ProductName = z.Product.Name,
+                MenuTableId = z.MenuTableId,
+                
+            }).ToList();
+            if (values.Count > 0)
+            {
+                return Ok(values);
+            }
+            else
+            {
+                return NotFound("No records found.");
+            }
         }
 
         [HttpGet("{id}")]
